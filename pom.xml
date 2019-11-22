@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.tianjing</groupId>
+    <artifactId>tgtools-xxl-job-executor</artifactId>
+    <packaging>pom</packaging>
+    <version>2.1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>tgtools-xxl-job-executor-service</module>
+        <module>tgtools-xxl-job-executor-springboot</module>
+        <module>tgtools-xxl-job-executor-testjob</module>
+    </modules>
+
+</project>
