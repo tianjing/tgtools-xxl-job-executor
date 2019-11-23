@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tgtools.util.LogHelper;
 import tgtools.web.platform.Platform;
 
 import javax.annotation.PostConstruct;
@@ -19,31 +18,26 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 public class XxlJobExecutorConfig {
+    @Autowired
+    ApplicationContext applicationContext;
     @Value("${xxl.job.admin.addresses}")
     private String adminAddresses;
-
     @Value("${xxl.job.executor.appname}")
     private String appName;
-
     @Value("${xxl.job.executor.ip}")
     private String ip;
-
     @Value("${xxl.job.executor.port}")
     private int port;
-
     @Value("${xxl.job.accessToken}")
     private String accessToken;
-
-    @Value("${xxl.job.executor.logpath}")
+    @Value("${xxl.job.executor.logpath:}")
     private String logPath;
-
     @Value("${xxl.job.executor.logretentiondays}")
     private int logRetentionDays;
 
-    //@Bean(initMethod = "start", destroyMethod = "destroy")
-    @Bean()
+    @Bean
     public XxlJobSpringExecutor xxlJobExecutor() {
-        tgtools.util.LogHelper.infoForce(this.getClass().getName(),"xxlJobExecutor init ======","xxlJobExecutor");
+        tgtools.util.LogHelper.infoForce(this.getClass().getName(), "xxlJobExecutor init ======", "xxlJobExecutor");
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
         xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
         xxlJobSpringExecutor.setAppName(appName);
@@ -55,18 +49,15 @@ public class XxlJobExecutorConfig {
 
         return xxlJobSpringExecutor;
     }
-    @Autowired
-    ApplicationContext applicationContext;
 
     @PostConstruct
     public void init() {
         Platform.startup(this.applicationContext, false, false, false, false, false, false);
-        LogHelper.info("", "fdasfds", "fdafdsa");
+        logPath = tgtools.web.platform.Platform.getServerPath() + "/xxl-job";
     }
 
     @Bean
-    public JarJobHandler JarJobHandler()
-    {
+    public JarJobHandler JarJobHandler() {
         return new JarJobHandler();
     }
 }
