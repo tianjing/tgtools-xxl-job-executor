@@ -7,7 +7,7 @@
     <groupId>com.github.tianjing</groupId>
     <artifactId>tgtools-xxl-job-executor</artifactId>
     <packaging>pom</packaging>
-    <version>2.1.0.0-SNAPSHOT</version>
+    <version>2.1.1.0-SNAPSHOT</version>
     <modules>
         <module>tgtools-xxl-job-executor-service</module>
         <module>tgtools-xxl-job-executor-springboot</module>
