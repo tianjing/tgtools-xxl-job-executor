@@ -54,8 +54,7 @@ public class JarJobHandler extends IJobHandler {
                 ((Task) task).run(cont);
             }
         } catch (Throwable e) {
-            XxlJobLogHelper.log("服务执行失败;原因：" + e.getMessage());
-            LogHelper.error("", "服务执行失败;原因：" + e.getMessage(), "ServiceJob", e);
+            XxlJobLogHelper.log( "服务执行失败;原因：" + e.toString());
         }
         return SUCCESS;
     }
