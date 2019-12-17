@@ -1,5 +1,6 @@
 package com.github.tianjing.tgtools.xxl.job.executor.service.jobhandler;
 
+import com.github.tianjing.tgtools.xxl.job.executor.service.util.XxlJobLogHelper;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.JobHandler;
@@ -53,6 +54,7 @@ public class JarJobHandler extends IJobHandler {
                 ((Task) task).run(cont);
             }
         } catch (Throwable e) {
+            XxlJobLogHelper.log("服务执行失败;原因：" + e.getMessage());
             LogHelper.error("", "服务执行失败;原因：" + e.getMessage(), "ServiceJob", e);
         }
         return SUCCESS;
